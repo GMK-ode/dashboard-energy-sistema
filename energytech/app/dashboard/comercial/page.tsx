@@ -14,6 +14,7 @@ import { SheetInterfaceMetaClienteFormInfo } from "@/interfaces/microsoft/excel/
 import { SheetInterfaceMetaVendedorFormInfo } from "@/interfaces/microsoft/excel/dadosSheets/comercial/metasInterface/Vendedor";
 import { IndicadorGaugeVelocidade } from "@/components/chart/comercial/pie/indicador2";
 import { Pie180IndicadorMetaConluida } from "@/components/chart/comercial/pie/indicador";
+import { useAuthentication } from "@/context/userAuthentication";
 
 
 
@@ -26,9 +27,10 @@ export default function DashBoardComercial() {
   const [dataIndiceTotal, setDataIndiceTotal] = useState < SheetIndiceMetasFormInfo[]> ([]);
   const [dataInterfaceCliente, setDataInterfaceCliente] = useState < SheetInterfaceMetaClienteFormInfo[]> ([]);
   const [dataInterfaceVendedor, setDataInterfaceVendedor] = useState < SheetInterfaceMetaVendedorFormInfo[]> ([]);
+  const { token } = useAuthentication();
 
   const handleData = async () => {
-    const responseCliente = await getSheetsData(dashboardCormecial, 'Metas Clientes Geral');
+    const responseCliente = await getSheetsData(dashboardCormecial, 'Metas Clientes Geral', token);
     const mappedDataCliente = responseCliente.text.slice(1).map((row: string[], rowIndex): SheetComMetsGeralFormInfo => ({
       id: rowIndex + 1,
       tipo: row[0],
@@ -41,7 +43,7 @@ export default function DashBoardComercial() {
     }));
     setDataCliente(mappedDataCliente);
 
-    const responseVendedor = await getSheetsData(dashboardCormecial, 'Metas Vendedores Geral');
+    const responseVendedor = await getSheetsData(dashboardCormecial, 'Metas Vendedores Geral', token);
     const mappedDataVendedor = responseVendedor.text.slice(1).map((row: string[], rowIndex): SheetComMetsGeralFormInfo => ({
       id: rowIndex + 1,
       tipo: row[0],
@@ -54,7 +56,7 @@ export default function DashBoardComercial() {
     }));
     setDataVendedor(mappedDataVendedor);
 
-    const responseIndicesTotal = await getSheetsData(dashboardCormecial, 'Indices Metas');
+    const responseIndicesTotal = await getSheetsData(dashboardCormecial, 'Indices Metas', token);
     const mappedDataIndice= responseIndicesTotal.text.slice(1).map((row: string[], rowIndex): SheetIndiceMetasFormInfo => ({
       id: rowIndex + 1,
       tipo: row[0],
@@ -64,7 +66,7 @@ export default function DashBoardComercial() {
     }));
     setDataIndiceTotal(mappedDataIndice)
 
-    const responseInterfaceCliente = await getSheetsData(dashboardCormecial, 'Metas Clientes Geral');
+    const responseInterfaceCliente = await getSheetsData(dashboardCormecial, 'Metas Clientes Geral', token);
     const mappedDataInterfaceCliente = responseInterfaceCliente.text.slice(1).map((row: string[], rowIndex): SheetInterfaceMetaClienteFormInfo => ({
       id: rowIndex + 1,
       clientes: row[0],
@@ -74,7 +76,7 @@ export default function DashBoardComercial() {
     }));
     setDataInterfaceCliente(mappedDataInterfaceCliente)
 
-    const responseInterfaceVendedor = await getSheetsData(dashboardCormecial, 'Metas Vendedores Geral');
+    const responseInterfaceVendedor = await getSheetsData(dashboardCormecial, 'Metas Vendedores Geral', token);
     const mappedDataInterfaceVendedor = responseInterfaceVendedor.text.slice(1).map((row: string[], rowIndex): SheetInterfaceMetaVendedorFormInfo => ({
       id: rowIndex + 1,
       vendedor: row[0],

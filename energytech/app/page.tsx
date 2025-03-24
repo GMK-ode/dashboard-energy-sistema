@@ -2,8 +2,6 @@
 import { useAuthentication } from "@/context/userAuthentication";
 import { useEffect, useState } from "react";
 import { AuthServerSideMsal } from "@/services/microsoft/auth";
-import { searchMyDrive } from "@/services/microsoft/onedrive/searchMyDrive";
-import { OneDriveSearch } from "@/interfaces/microsoft/onedrive";
 
 export default function Authentication() {
   const { user, graphClient, initializeMsalAndGraphClient, fetchUser } = useAuthentication();
