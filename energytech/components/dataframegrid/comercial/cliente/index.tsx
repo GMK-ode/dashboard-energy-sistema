@@ -18,7 +18,7 @@ export function InterfaceMetaCliente({ data }: InterfaceMetaClienteProps) {
     <div className="w-full rounded-lg bg-gray-900 p-6 shadow-md">
       <h2 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
         <Building className="w-5 h-5 text-orange-500" />
-        Ranking Clientes (Mês Atual e Futuros)
+        Ranking Clientes (% Metas)
       </h2>
 
       {/* Container com barra de rolagem */}
