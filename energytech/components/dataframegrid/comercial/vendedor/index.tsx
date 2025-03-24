@@ -6,6 +6,8 @@ import { SheetInterfaceMetaVendedorFormInfo } from "@/interfaces/microsoft/excel
 import { agruparVendedorPorMes } from "@/utils/comercial/interfaceMetas/vendedor"
 import { Medal, Users } from "lucide-react" // Importe o ícone Users
 
+import { CardContent, Card } from "@/components/ui/card"
+
 type InterfaceMetaVendedorProps = {
   data: SheetInterfaceMetaVendedorFormInfo[]
 }
@@ -14,14 +16,14 @@ export function InterfaceMetaVendedor({ data }: InterfaceMetaVendedorProps) {
   const vendedorPorMes = agruparVendedorPorMes(data);
 
   return (
-    <div className="w-full rounded-lg bg-gray-900 p-6 shadow-md">
-      <h2 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
-        <Users className="w-5 h-5 text-orange-500" /> {/* Ícone de Vendedores */}
-        Ranking Vendedores (% Metas)
-      </h2>
+    <Card className="w-full md:max-h-[400px] overflow-y-auto rounded-lg p-6 shadow-2xs  border-4 dark:border-1">
 
       {/* Container com barra de rolagem */}
-      <div className="overflow-y-auto max-h-[300px]">
+      <CardContent className="overflow-y-auto max-h-[320px] rounded-lg">
+        <h2 className="text-lg font-semibold text-orange-400 mb-6 flex items-center gap-2">
+          <Users className="w-5 h-5 text-orange-400" /> {/* Ícone de Vendedores */}
+          Ranking Vendedores (% Metas)
+        </h2>
         {Object.entries(vendedorPorMes).map(([mes, vendedor]) => {
           const vendedorExibidos = vendedor.slice(0, 10);
 
@@ -68,7 +70,7 @@ export function InterfaceMetaVendedor({ data }: InterfaceMetaVendedorProps) {
             </div>
           );
         })}
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }

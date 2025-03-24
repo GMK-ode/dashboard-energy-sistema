@@ -1,4 +1,5 @@
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip'
+import { ModeToggle } from "@/components/theme";
 import Link from 'next/link'
 import { ChartPie, Building, LogOut } from 'lucide-react'
 import Image from 'next/image'
@@ -12,7 +13,7 @@ interface SideBarComputadorCloseProps {
 
 export const SideBarComputadorClose = ({handleCloseSidebar}: SideBarComputadorCloseProps) => {
   return(
-    <aside className='fixed inset-0 left-0 z-1 hidden w-14 duration-700 delay-700 border-r bg bg-background sm:flex flex-col mt-16'>
+    <aside className='fixed inset-0 left-0 z-1 hidden w-14 duration-700 delay-700 border-r bg-zinc-200 dark:bg-background sm:flex flex-col mt-16'>
         <nav className='flex flex-col items-center gap-4 px-2 py-5 '>
           <TooltipProvider>
             <Button
@@ -63,6 +64,19 @@ export const SideBarComputadorClose = ({handleCloseSidebar}: SideBarComputadorCl
             </Tooltip>
           </TooltipProvider>
         </nav> */}
+        <nav className='mt-auto flex flex-col items-center gap-4 px-2 py-5'>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div
+                  className='flex h-9 w-9 shrink-0 items-center justify-center bg-primary text-orange-400 rounded-lg transition-colors hover:text-foreground cursor-pointer'>
+                  <ModeToggle />
+                </div>
+              </TooltipTrigger>
+              <TooltipContent side='left'>Modo Light ou Dark </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </nav>
 
       </aside>
 

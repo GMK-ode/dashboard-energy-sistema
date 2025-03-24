@@ -4,6 +4,7 @@ import { ChartPie, Building, LogOut } from 'lucide-react'
 import Image from 'next/image'
 import logo from '@/assets/logo3.png'
 import { Button } from '@/components/ui/button'
+import { ModeToggle } from '@/components/theme'
 
 interface SideBarComputadorOpenProps {
   handleOpenSidebar: () => void;
@@ -11,7 +12,7 @@ interface SideBarComputadorOpenProps {
 
 export const SideBarComputadorOpen = ({ handleOpenSidebar }: SideBarComputadorOpenProps) => {
   return (
-    <aside className='fixed inset-0 left-0 z-1 hidden duration-700 delay-700  border-r bg bg-background sm:flex flex-col mt-16 transform w-70'>
+    <aside className='fixed inset-0 left-0 z-1 hidden duration-700 delay-700  border-r bg-zinc-200 dark:bg-background sm:flex flex-col mt-16 transform w-70'>
       <nav className='flex flex-col items-start gap-4 px-2 py-5 '>
         <TooltipProvider>
           <div className='flex flex-col items-center gap-4 cursor-pointer w-full justify-center' onClick={() => handleOpenSidebar()}>
@@ -65,6 +66,19 @@ export const SideBarComputadorOpen = ({ handleOpenSidebar }: SideBarComputadorOp
           </Tooltip>
         </TooltipProvider>
       </nav> */}
+
+      <nav className='mt-auto flex flex-col items-center gap-4 px-2 py-5'>
+        <TooltipProvider>
+          <Tooltip>
+            <div className='flex items-center gap-4 cursor-pointer'>
+              <div className='flex h-9 w-9 shrink-0 items-center justify-center bg-primary text-orange-400 rounded-lg transition-colors hover:text-foreground cursor-pointer'>
+                <ModeToggle />
+              </div>
+            </div>
+            <TooltipContent side='left'>Tema</TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </nav>
 
     </aside>
 

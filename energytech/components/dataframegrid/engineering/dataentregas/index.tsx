@@ -67,7 +67,7 @@ export const EntregasAvisos = ({ data }: EntregasAvisosProps) => {
   }, [data, currentDay, currentMonth, currentYear]);
 
   return (
-    <Card className="flex-1 h-[400px] overflow-hidden-y">
+    <Card className="flex-1 h-[400px] overflow-hidden-y  shadow-2xs  border-4 dark:border-1">
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg sm:text-xl text-orange-400">
@@ -85,7 +85,7 @@ export const EntregasAvisos = ({ data }: EntregasAvisosProps) => {
             <div key={group.monthYear}>
               <h2 className="text-sm font-bold mt-1 mb-2 text-orange-400">{group.monthYear}</h2>
               {group.entregas.map((entrega, index) => (
-                <article key={index} className="flex items-center gap-2 border-b py-2">
+                <article key={index} className="flex items-center gap-2 border-b py-2 border-slate-800 ">
                   <h1 className="bg-green-400 rounded-3xl p-2 font-bold font-mono text-black">
                     PV: {entrega.pvComPrazo}
                   </h1>

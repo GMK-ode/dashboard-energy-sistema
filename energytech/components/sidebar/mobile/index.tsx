@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { Package, ChartPie, Building } from 'lucide-react'
 import logo from '@/assets/logo3.png'
 import Image from 'next/image'
+import { Tooltip, TooltipContent, TooltipProvider } from '@/components/ui/tooltip'
+import { ModeToggle } from '@/components/theme'
 
 
 export const SideBarMobile = () => {
@@ -48,6 +50,18 @@ export const SideBarMobile = () => {
                   <Building className='h-5 w-5 text-orange-400' />
                   <span>Dashboard Comercial</span>
                 </Link>
+              </nav>
+              <nav className='mt-auto flex flex-col items-center gap-4 px-2 py-5'>
+                <TooltipProvider>
+                  <Tooltip>
+                    <div className='flex items-center gap-4 cursor-pointer'>
+                      <div className='flex h-9 w-9 shrink-0 items-center justify-center bg-primary text-orange-400 rounded-lg transition-colors hover:text-foreground cursor-pointer'>
+                        <ModeToggle />
+                      </div>
+                    </div>
+                    <TooltipContent side='left'>Modo Light ou Dark </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               </nav>
             </SheetContent>
           </Sheet>

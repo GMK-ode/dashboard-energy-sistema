@@ -27,7 +27,7 @@ export const StatusPV = ({ data }: StatusPVProps) => {
   }, [data]); // Dependência: data
 
   return (
-    <Card className="flex-1 md:max-h-[400px]">
+    <Card className="flex-1 md:max-h-[400px] shadow-2xs  border-4 dark:border-1">
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg sm:text-xl text-orange-400">
@@ -39,7 +39,7 @@ export const StatusPV = ({ data }: StatusPVProps) => {
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="min-h-[200px] w-full">
+      <CardContent className="overflow-y-auto max-h-[320px] rounded-lg">
         <DataTable columns={columns} data={dataGrid} />
       </CardContent>
     </Card>

@@ -19,12 +19,12 @@ export const Pie180IndicadorMetaConluida = ({ data }: Pie180Props) => {
     },
     previsto: {
       label: "Previsto",
-      color: "hsl(var(--chart-1))",
+      color: "#0047ab",
     },
   } satisfies ChartConfig;
 
   return (
-    <Card className="lg:h-[220px] ">
+    <Card className="lg:h-[220px]  shadow-2xs  border-4 dark:border-1">
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg sm:text-xl text-orange-400">

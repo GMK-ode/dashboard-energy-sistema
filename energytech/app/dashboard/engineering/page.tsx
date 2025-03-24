@@ -6,7 +6,6 @@ import { LineChartEntradaProjetoMes } from "@/components/chart/engineering/line"
 import { PieChartStatusGeral } from "@/components/chart/engineering/pie";
 import { EntregasAvisos } from "@/components/dataframegrid/engineering/dataentregas";
 import { StatusPV } from "@/components/dataframegrid/engineering/status";
-import { ModeToggle } from "@/components/theme";
 import { dashboardEngenharia } from "@/interfaces/microsoft/appsettings";
 import { getSheetsData } from "@/services/microsoft/excel/sheetData";
 import { SheetEngBaseAnoFormPromiseInfo } from "@/interfaces/microsoft/excel/dadosSheets/engineering/baseAno";
@@ -88,7 +87,7 @@ export default function DashBoardEngenharia() {
 
   return (
     <main className="sm:ml-14 p-4">
-      <section className="grid grid-cols-1  md:grid-cols-3 lg:grid-cols-5 gap-2 scroll-smooth overflow-hidden-y">
+      <section className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-2 scroll-smooth overflow-hidden-y">
 
         <KpiCardEng
           title="Projetos"

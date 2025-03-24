@@ -29,9 +29,9 @@ export const KpiCardComercial = ({ code, name, bid, varBid, coin }: KpiCardComer
   }
 
   return (
-    <Card >
+    <Card className=" shadow-2xs  border-4 dark:border-1">
       <CardHeader>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center" >
           <CardTitle className="text-lg sm:text-xl text-orange-400 select-none">
             Cotação {code}
           </CardTitle>

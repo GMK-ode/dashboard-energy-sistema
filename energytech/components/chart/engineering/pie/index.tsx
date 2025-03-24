@@ -44,10 +44,10 @@ const chartConfig = {
 
 export const PieChartStatusGeral = ({ fases }: PieChartStatusGeralProps) => {
   const chartData = [
-    { status: "Em dia", porcentagem: fases.projEmDia, fill: "var(--color-chrome)" },
-    { status: "Concluído", porcentagem: fases.projConcluidos, fill: "var(--color-safari)" },
-    { status: "Faturado", porcentagem: fases.projFaturados, fill: "var(--color-edge)" },
-    { status: "Em atraso", porcentagem: fases.projEmAtraso, fill: "var(--color-other)" },
+    { status: "Em dia", porcentagem: fases.projEmDia, fill: "#2662d9" },
+    { status: "Concluído", porcentagem: fases.projConcluidos, fill: "#2eb88a" },
+    { status: "Faturado", porcentagem: fases.projFaturados, fill: "#af57db" },
+    { status: "Em atraso", porcentagem: fases.projEmAtraso, fill: "#e23670" },
   ];
 
   // Calcular o total de projetos
@@ -60,7 +60,7 @@ export const PieChartStatusGeral = ({ fases }: PieChartStatusGeralProps) => {
   }));
 
   return (
-    <Card className="w-full h-[400px]">
+    <Card className="w-full h-[400px]  shadow-2xs  border-4 dark:border-1">
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg sm:text-xl text-orange-400">

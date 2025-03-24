@@ -5,6 +5,7 @@ import { Progress } from "@/components/ui/progress"
 import { SheetInterfaceMetaClienteFormInfo } from "@/interfaces/microsoft/excel/dadosSheets/comercial/metasInterface/Cliente"
 import { agruparClientesPorMes } from "@/utils/comercial/interfaceMetas/cliente"
 import { Medal, Building } from "lucide-react" // Importe o ícone Building
+import { Card, CardContent } from "@/components/ui/card"
 
 type InterfaceMetaClienteProps = {
   data: SheetInterfaceMetaClienteFormInfo[]
@@ -15,14 +16,14 @@ export function InterfaceMetaCliente({ data }: InterfaceMetaClienteProps) {
   const clientesPorMes = agruparClientesPorMes(data);
 
   return (
-    <div className="w-full rounded-lg bg-gray-900 p-6 shadow-md">
-      <h2 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
-        <Building className="w-5 h-5 text-orange-500" />
-        Ranking Clientes (% Metas)
-      </h2>
+    <Card className="w-full  overflow-y-auto rounded-lg p-6 shadow-2xs  border-4 dark:border-1">
 
       {/* Container com barra de rolagem */}
-      <div className="overflow-y-auto max-h-[300px]">
+      <CardContent className="overflow-y-auto max-h-[320px]">
+        <h2 className="text-lg font-semibold text-orange-400 mb-6 flex items-center gap-2">
+          <Building className="w-5 h-5 text-orange-400" />
+          Ranking Clientes (% Metas)
+        </h2>
         {Object.entries(clientesPorMes).map(([mes, clientes]) => {
           const clientesExibidos = clientes.slice(0, 10);
 
@@ -70,7 +71,7 @@ export function InterfaceMetaCliente({ data }: InterfaceMetaClienteProps) {
             </div>
           );
         })}
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }

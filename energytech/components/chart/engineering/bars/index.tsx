@@ -30,7 +30,7 @@ interface BarHorizontalPendenciasProps {
 export const BarHorizontalPendencias = ({data}: BarHorizontalPendenciasProps) => {
   const chartData = graficoBarraPendencia(data)
   return (
-    <Card className="w-full h-[400px]">
+    <Card className="w-full h-[400px] shadow-2xs  border-4 dark:border-1">
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg sm:text-xl text-orange-400">

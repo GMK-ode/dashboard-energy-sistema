@@ -30,7 +30,7 @@ export const BarMetaAno = ({ title, data }: BarMetaAnoProps) => {
   } satisfies ChartConfig;
 
   return (
-    <Card className="flex-1 md:max-h-[400px]">
+    <Card className="flex-1 md:max-h-[400px]  shadow-2xs border-4 dark:border-1 ">
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg sm:text-xl text-orange-400">
