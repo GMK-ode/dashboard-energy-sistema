@@ -4,7 +4,7 @@ import { MsalConfig, scopesUser, User } from '@/interfaces/microsoft/appsettings
 import { PublicClientApplication } from '@azure/msal-browser';
 import { Client } from '@microsoft/microsoft-graph-client';
 import { setCookie } from 'nookies';
-import { toast } from "sonner";
+
 
 
 
@@ -15,7 +15,6 @@ interface AuthenticationProviderProps {
 
 interface AuthenticationContextProps {
   user: User | null;
-  token: string | "teste";
   graphClient: any;
   initializeMsalAndGraphClient: (config: MsalConfig) => void;
   fetchUser: () => void;
@@ -24,7 +23,6 @@ interface AuthenticationContextProps {
 
 const AuthenticationContext = createContext<AuthenticationContextProps>({
   user: null,
-  token: "teste",
   graphClient: null,
   initializeMsalAndGraphClient: () => { },
   fetchUser: () => { },
@@ -36,7 +34,6 @@ const AuthenticationContext = createContext<AuthenticationContextProps>({
 const AuthenticationProvider = ({ children }: AuthenticationProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [graphClient, setGraphClient] = useState<any>(null);
-  const [token, setToken] = useState<string | "teste">("teste");
 
   async function initializeMsalAndGraphClient(config: MsalConfig) {
     const msalInstance = new PublicClientApplication(config);
@@ -65,7 +62,6 @@ const AuthenticationProvider = ({ children }: AuthenticationProviderProps) => {
           path: '/',
           sameSite: 'lax',
         });
-        setToken(response.accessToken);
         return response.accessToken;
       },
     };
@@ -95,7 +91,6 @@ const AuthenticationProvider = ({ children }: AuthenticationProviderProps) => {
       <AuthenticationContext.Provider value={{
         user,
         graphClient,
-        token,
         initializeMsalAndGraphClient,
         fetchUser
       }}>

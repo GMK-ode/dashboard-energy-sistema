@@ -6,4 +6,5 @@ export interface SheetIndiceFormPromise {
   cellCount: number;
   columnHidden: null;
   text: string[][];
+  values: string[][];
 }

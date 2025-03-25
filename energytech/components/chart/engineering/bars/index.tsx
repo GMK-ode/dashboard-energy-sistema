@@ -61,7 +61,7 @@ export const BarHorizontalPendencias = ({data}: BarHorizontalPendenciasProps) =>
             tickFormatter={(value) => value.slice(0, 3)}
             hide
           />
-          <XAxis dataKey="total" type="number" hide />
+          <XAxis dataKey="total" type="number" className="text-orange-400" hide />
           <ChartTooltip
             cursor={false}
             content={<ChartTooltipContent indicator="line" />}
@@ -85,9 +85,9 @@ export const BarHorizontalPendencias = ({data}: BarHorizontalPendenciasProps) =>
               dataKey="total"
               position="right"
               offset={8}
-              fill="white"
-              className="text-yellow-600"
-              fontSize={15}
+              fill="currentColor"
+              className="text-black dark:text-white"
+              fontSize={18}
             />
           </Bar>
         </BarChart>

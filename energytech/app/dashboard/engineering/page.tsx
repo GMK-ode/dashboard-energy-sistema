@@ -7,13 +7,14 @@ import { PieChartStatusGeral } from "@/components/chart/engineering/pie";
 import { EntregasAvisos } from "@/components/dataframegrid/engineering/dataentregas";
 import { StatusPV } from "@/components/dataframegrid/engineering/status";
 import { dashboardEngenharia } from "@/interfaces/microsoft/appsettings";
-import { getSheetsData } from "@/services/microsoft/excel/sheetData";
+import { getSheetsData, getSheetsDataCredencial } from "@/services/microsoft/excel/sheetData";
 import { SheetEngBaseAnoFormPromiseInfo } from "@/interfaces/microsoft/excel/dadosSheets/engineering/baseAno";
 import { kpiAprovEng, kpiCompras, kpiEntregas, kpiMontagem, kpiProjetos } from "@/utils/engineering/kpis";
 import { KpiCardEng } from "@/components/kpicard/engineering";
 import { ProjetosConcluidos, ProjetosEmAtraso, ProjetosEmDia, ProjetosFaturados} from "@/utils/engineering/charts/pie"; 
 import { PedidoEmAtraso } from "@/components/pedidoEmAtraso";
-import { useAuthentication } from "@/context/userAuthentication";
+import { parseCookies } from "nookies";
+import useTokenData from "@/hooks/tokenData";
 
 
 
@@ -21,10 +22,10 @@ export default function DashBoardEngenharia() {
   const [data, setData] = useState<SheetEngBaseAnoFormPromiseInfo[]>([]);
   const [kpi, setKpi] = useState({ projetos: 0, apovEng: 0, montagem: 0, compras: 0, entregas: 0 });
   const [fases, setFases] = useState({ projConcluidos: 0, projEmAtraso: 0, projEmDia: 0, projFaturados: 0 });
-  const { token } = useAuthentication();
-
+  const { tokenData } = useTokenData();  
+  
   const handleData = async () => {
-    const response = await getSheetsData(dashboardEngenharia, 'Base Ano', token);
+    const response = await getSheetsData(dashboardEngenharia, 'Base Ano', tokenData);
     // Mapeando os dados para a estrutura correta
     const mappedData = response.text.slice(1).map((row: string[], rowIndex): SheetEngBaseAnoFormPromiseInfo => ({
       id: rowIndex + 1,
@@ -78,7 +79,8 @@ export default function DashBoardEngenharia() {
 
   useEffect(() => {
     handleData();
-  }, []);
+    
+  }, [tokenData]);
 
   useEffect(() => {
     handleKPI();

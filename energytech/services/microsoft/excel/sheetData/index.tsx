@@ -1,6 +1,42 @@
 import { SheetIndiceFormPromise } from "@/interfaces/microsoft/excel/dadosSheets";
-
+import { apiMicrosoft } from "../../apiMicrosoft";
 import axios from "axios";
+import { apiMock } from "@/services/mockAPi/apiMock";
+import { TokenMockForm } from "@/interfaces/mockAPI";
+
+
+
+export async function patchTokenSheetsData( token: string): Promise<SheetIndiceFormPromise> {
+  const response = await apiMicrosoft.patch(`items/0132CK6B5OBPQZE5R64ZCLAS2DMDQBT6UO/workbook/worksheets('base')/usedRange`,
+    {
+      "values": [
+        [token]
+      ]
+    }
+  );
+  return response.data;
+}
+
+export async function getSheetsDataCredencial(): Promise<SheetIndiceFormPromise> {
+  const response = await apiMicrosoft.get(`items/0132CK6B5OBPQZE5R64ZCLAS2DMDQBT6UO/workbook/worksheets('base')/usedRange`);
+  return response.data;
+}
+
+
+
+export async function putCredencialTV(token:string): Promise<TokenMockForm> {
+  const response = await apiMock.put(`/dashboard/1`,
+    {
+      token: token
+    }
+  );
+  return response.data;
+}
+
+export async function getCredencialTV(): Promise<TokenMockForm> {
+  const response = await apiMock.get(`/dashboard/1`);
+  return response.data;
+}
 
 
 
