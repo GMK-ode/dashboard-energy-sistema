@@ -48,7 +48,7 @@ export default function Authentication() {
     } = parseCookies();
     try {
       if (graphClient) {
-        await patchTokenSheetsData(token)
+        // await patchTokenSheetsData(token)
         await putCredencialTV(token);
       }
     } catch (error) {
