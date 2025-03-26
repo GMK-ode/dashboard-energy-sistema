@@ -1,6 +1,6 @@
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip'
 import Link from 'next/link'
-import { ChartPie, Building, LogOut } from 'lucide-react'
+import { ChartPie, Building, LogOut, Home } from 'lucide-react'
 import Image from 'next/image'
 import logo from '@/assets/logo3.png'
 import { Button } from '@/components/ui/button'
@@ -23,6 +23,18 @@ export const SideBarComputadorOpen = ({ handleOpenSidebar }: SideBarComputadorOp
               <span className='sr-only'>DashBoard Avatar</span>
             </Button>
           </div>
+          <Tooltip>
+            <Link href="/" className='flex items-center gap-4 cursor-pointer'>
+              <div className='flex h-9 w-9 shrink-0 items-center justify-center bg-primary text-orange-400 rounded-lg transition-colors hover:text-foreground'>
+                <Home className='h-5 w-5' />
+                <span className='sr-only'>Home</span>
+              </div>
+              <span className='text-lg font-bold text-foreground-accent'>Home</span>
+            </Link>
+
+            <TooltipContent side='left'>Home</TooltipContent>
+          </Tooltip>
+
           <Tooltip>
             <Link href="/dashboard/engineering" className='flex items-center gap-4 cursor-pointer'>
               <div className='flex h-9 w-9 shrink-0 items-center justify-center bg-primary text-orange-400 rounded-lg transition-colors hover:text-foreground'>

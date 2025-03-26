@@ -25,6 +25,7 @@ export default function DashBoardEngenharia() {
   const { tokenData } = useTokenData();  
   
   const handleData = async () => {
+    if(tokenData === '') return <h1>Token não encontrado</h1>;
     const response = await getSheetsData(dashboardEngenharia, 'Base Ano', tokenData);
     // Mapeando os dados para a estrutura correta
     const mappedData = response.text.slice(1).map((row: string[], rowIndex): SheetEngBaseAnoFormPromiseInfo => ({

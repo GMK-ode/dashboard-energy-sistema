@@ -1,7 +1,7 @@
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip'
 import { ModeToggle } from "@/components/theme";
 import Link from 'next/link'
-import { ChartPie, Building, LogOut } from 'lucide-react'
+import { ChartPie, Building, LogOut, Home } from 'lucide-react'
 import Image from 'next/image'
 import logo from '@/assets/logo3.png'
 import { Button } from '@/components/ui/button'
@@ -22,6 +22,17 @@ export const SideBarComputadorClose = ({handleCloseSidebar}: SideBarComputadorCl
               <Image src={logo} alt='logo' width={500} height={500} />
               <span className='sr-only'>DashBoard Avatar</span>
             </Button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link
+                  href="/"
+                  className='flex h-9 w-9 shrink-0 items-center justify-center bg-primary text-orange-400 rounded-lg transition-colors hover:text-foreground'>
+                  <Home className='h-5 w-5' />
+                  <span className='sr-only'>Home</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side='left'>Home</TooltipContent>
+            </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link

@@ -1,7 +1,7 @@
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetDescription, SheetTitle } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import { Package, ChartPie, Building } from 'lucide-react'
+import { Package, ChartPie, Building, Home } from 'lucide-react'
 import logo from '@/assets/logo3.png'
 import Image from 'next/image'
 import { Tooltip, TooltipContent, TooltipProvider } from '@/components/ui/tooltip'
@@ -31,7 +31,7 @@ export const SideBarMobile = () => {
               <nav className='grid gap-6 text-lg font-medium'>
                 <div className='flex items-center gap-2 w-full justify-center'>
                   <Link
-                    href="/"
+                    href="#"
                     className='flex h-10 w-10 bg-primary rounded-full text-lg items-center justify-center text-primary-foreground md:text-base gap-2'
                     prefetch={false}>
                     <Image src={logo} alt='logo' width={500} height={500} className='rotate-3' />
@@ -39,6 +39,13 @@ export const SideBarMobile = () => {
                   </Link>
                   <span className='text-2xl text-muted-foreground'>EnergyTech</span>
                 </div>
+                <Link
+                  href="/"
+                  className='flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground'
+                  prefetch={false}>
+                  <Home className='h-5 w-5 text-orange-400' />
+                  <span>Home</span>
+                </Link>
                 <Link
                   href="/dashboard/engineering"
                   className='flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground'

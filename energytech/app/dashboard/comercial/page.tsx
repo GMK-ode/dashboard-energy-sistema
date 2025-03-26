@@ -31,7 +31,7 @@ export default function DashBoardComercial() {
     
 
   const handleData = async () => {
-    
+    if(tokenData === '') return <h1>Token não encontrado</h1>;
     const responseCliente = await getSheetsData(dashboardCormecial, 'Metas Clientes Geral', tokenData);
     const mappedDataCliente = responseCliente.text.slice(1).map((row: string[], rowIndex): SheetComMetsGeralFormInfo => ({
       id: rowIndex + 1,

@@ -159,3 +159,39 @@
 .hover\:pause:hover {
   animation-play-state: paused;
 }
+
+@media (min-width: 1920px) {
+  :root {
+    --font-size-sm: 1.25rem;  /* 20px */
+    --font-size-base: 1.5rem; /* 24px */
+    --font-size-lg: 1.75rem;  /* 28px */
+    --spacing-unit: 1.5rem;   /* 24px */
+  }
+}
+
+@media (min-width: 3840px) {
+  :root {
+    --font-size-sm: 1.5rem;   /* 24px */
+    --font-size-base: 2rem;   /* 32px */
+    --font-size-lg: 2.5rem;   /* 40px */
+    --spacing-unit: 2rem;     /* 32px */
+  }
+}
+
+/* Foco visível para navegação com controle remoto */
+.tv-focus {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--ring);
+}
+
+@media (min-width: 1920px) {
+  .tv-focus {
+    box-shadow: 0 0 0 8px var(--ring);
+  }
+}
+
+@media (min-width: 3840px) {
+  .tv-focus {
+    box-shadow: 0 0 0 12px var(--ring);
+  }
+}
