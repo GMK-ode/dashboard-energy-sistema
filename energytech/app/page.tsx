@@ -44,7 +44,7 @@ export default function Authentication() {
         clearTimeout(timeoutId);
       }
     };
-  }, []); 
+  }, [tokenData]); 
 
 
   const handlePatchToken = async () => {
