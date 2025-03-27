@@ -1,18 +1,17 @@
 import { SheetEngBaseAnoFormPromiseInfo } from "@/interfaces/microsoft/excel/dadosSheets/engineering/baseAno";
 
-export function ProjetosConcluidos(data: SheetEngBaseAnoFormPromiseInfo[]) {
-  return data.filter((item) => item.fase === "CONCLUIDO").length;
+export function StatusGeralFases(data: SheetEngBaseAnoFormPromiseInfo[]) {
+  
+  const concluido = data.filter((item) => item.fase == "CONCLUIDO").length;
+  const emAtraso = data.filter((item) => item.fase == "EM ATRASO").length;
+  const emDia = data.filter((item) => item.fase == "EM DIA").length;
+  const faturado = data.filter((item) => item.fase == "FATURADO").length;
+  return {
+    concluido,
+    emAtraso,
+    emDia,
+    faturado,
+  };
 }
 
-export function ProjetosEmAtraso(data: SheetEngBaseAnoFormPromiseInfo[]) {
-  return data.filter((item) => item.fase === "EM ATRASO").length;
-}
-
-export function ProjetosEmDia(data: SheetEngBaseAnoFormPromiseInfo[]) {
-  return data.filter((item) => item.fase === "EM DIA").length;
-}
-
-export function ProjetosFaturados(data: SheetEngBaseAnoFormPromiseInfo[]) {
-  return data.filter((item) => item.fase === "FATURADO").length;
-}
 

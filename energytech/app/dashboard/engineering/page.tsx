@@ -7,21 +7,17 @@ import { PieChartStatusGeral } from "@/components/chart/engineering/pie";
 import { EntregasAvisos } from "@/components/dataframegrid/engineering/dataentregas";
 import { StatusPV } from "@/components/dataframegrid/engineering/status";
 import { dashboardEngenharia } from "@/interfaces/microsoft/appsettings";
-import { getSheetsData, getSheetsDataCredencial } from "@/services/microsoft/excel/sheetData";
+import { getSheetsData } from "@/services/microsoft/excel/sheetData";
 import { SheetEngBaseAnoFormPromiseInfo } from "@/interfaces/microsoft/excel/dadosSheets/engineering/baseAno";
-import { kpiAprovEng, kpiCompras, kpiEntregas, kpiMontagem, kpiProjetos } from "@/utils/engineering/kpis";
+import { kpiEngenharia } from "@/utils/engineering/kpis";
 import { KpiCardEng } from "@/components/kpicard/engineering";
-import { ProjetosConcluidos, ProjetosEmAtraso, ProjetosEmDia, ProjetosFaturados} from "@/utils/engineering/charts/pie"; 
 import { PedidoEmAtraso } from "@/components/pedidoEmAtraso";
-import { parseCookies } from "nookies";
 import useTokenData from "@/hooks/tokenData";
 
 
 
 export default function DashBoardEngenharia() {
   const [data, setData] = useState<SheetEngBaseAnoFormPromiseInfo[]>([]);
-  const [kpi, setKpi] = useState({ projetos: 0, apovEng: 0, montagem: 0, compras: 0, entregas: 0 });
-  const [fases, setFases] = useState({ projConcluidos: 0, projEmAtraso: 0, projEmDia: 0, projFaturados: 0 });
   const { tokenData } = useTokenData();  
   
   const handleData = async () => {
@@ -55,38 +51,13 @@ export default function DashBoardEngenharia() {
 
   }
 
-  const handleFases = () => {
-  const projConcluidos = ProjetosConcluidos(data);
-  const projEmAtraso = ProjetosEmAtraso(data);
-  const projEmDia = ProjetosEmDia(data);
-  const projFaturados = ProjetosFaturados(data);
-
-  setFases({ projConcluidos, projEmAtraso, projEmDia, projFaturados});
-
-  return { projConcluidos, projEmAtraso, projEmDia, projFaturados };
-};
   
-  const handleKPI = () => {
-    const projetos = kpiProjetos(data);
-    const apovEng = kpiAprovEng(data);
-    const montagem = kpiMontagem(data);
-    const compras = kpiCompras(data);
-    const entregas = kpiEntregas(data);
-    setKpi({ projetos, apovEng, montagem, compras, entregas });
-
-    return { projetos, apovEng, montagem, compras, entregas };
-  }
+  const kpi = kpiEngenharia(data);
 
 
   useEffect(() => {
     handleData();
-    
   }, [tokenData]);
-
-  useEffect(() => {
-    handleKPI();
-    handleFases();
-  }, [data]);
 
   
 
@@ -97,31 +68,31 @@ export default function DashBoardEngenharia() {
         <KpiCardEng
           title="Projetos"
           description="Total de projetos"
-          value={kpi.projetos}
+          value={kpi.totalProjetos}
         />
 
         <KpiCardEng
           title="Aprov. Eng"
           description="Projetos aprovados"
-          value={kpi.apovEng}
+          value={kpi.totalAprovados}
         />
 
         <KpiCardEng
           title="Compras"
           description="Compras necessárias"
-          value={kpi.compras}
+          value={kpi.totalCompras}
         />
 
         <KpiCardEng
           title="Montagem"
           description="Proj. em montagem"
-          value={kpi.montagem}
+          value={kpi.totalMontagem}
         />
 
         <KpiCardEng
           title="Entregas"
           description="Entregas realizadas"
-          value={kpi.entregas}
+          value={kpi.totalEntregas}
         />
         
       </section>
@@ -129,7 +100,7 @@ export default function DashBoardEngenharia() {
         <PedidoEmAtraso data={data} />
       </section>
       <section className="mt-2 grid grid-cols-1  md:grid-cols-3  gap-2">
-        <PieChartStatusGeral fases={fases} />
+        <PieChartStatusGeral data={data} />
         <EntregasAvisos data={data}/>
         <BarHorizontalPendencias data={data}/>
       </section>

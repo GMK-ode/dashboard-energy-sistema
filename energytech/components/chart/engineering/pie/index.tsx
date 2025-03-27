@@ -1,53 +1,53 @@
 "use client";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import { SheetEngBaseAnoFormPromiseInfo } from "@/interfaces/microsoft/excel/dadosSheets/engineering/baseAno";
+import { StatusGeralFases } from "@/utils/engineering/charts/pie";
 import { Pie, PieChart, Cell } from "recharts";
 
 // Interface para os dados das fases
-interface FasesProjetos {
-  projConcluidos: number;
-  projEmAtraso: number;
-  projEmDia: number;
-  projFaturados: number;
-}
+
 
 // Props do componente
 interface PieChartStatusGeralProps {
-  fases: FasesProjetos;
+  data: SheetEngBaseAnoFormPromiseInfo[]; // Dados de entrada
 }
 
-const chartConfig = {
-  porcentagem: {
-    label: "porcentagem",
-  },
-  chrome: {
-    label: "Chrome",
-    color: "hsl(var(--chart-1))",
-  },
-  safari: {
-    label: "Safari",
-    color: "hsl(var(--chart-2))",
-  },
-  firefox: {
-    label: "Firefox",
-    color: "hsl(var(--chart-3))",
-  },
-  edge: {
-    label: "Edge",
-    color: "hsl(var(--chart-4))",
-  },
-  other: {
-    label: "Other",
-    color: "hsl(var(--chart-5))",
-  },
-} satisfies ChartConfig;
 
-export const PieChartStatusGeral = ({ fases }: PieChartStatusGeralProps) => {
+export const PieChartStatusGeral = ({ data }: PieChartStatusGeralProps) => {
+
+  const response = StatusGeralFases(data); // Obter os dados das fases
+  const chartConfig = {
+    porcentagem: {
+      label: "porcentagem",
+    },
+    chrome: {
+      label: "Chrome",
+      color: "hsl(var(--chart-1))",
+    },
+    safari: {
+      label: "Safari",
+      color: "hsl(var(--chart-2))",
+    },
+    firefox: {
+      label: "Firefox",
+      color: "hsl(var(--chart-3))",
+    },
+    edge: {
+      label: "Edge",
+      color: "hsl(var(--chart-4))",
+    },
+    other: {
+      label: "Other",
+      color: "hsl(var(--chart-5))",
+    },
+  } satisfies ChartConfig;
+
   const chartData = [
-    { status: "Em dia", porcentagem: fases.projEmDia, fill: "#2662d9" },
-    { status: "Concluído", porcentagem: fases.projConcluidos, fill: "#2eb88a" },
-    { status: "Faturado", porcentagem: fases.projFaturados, fill: "#af57db" },
-    { status: "Em atraso", porcentagem: fases.projEmAtraso, fill: "#e23670" },
+    { status: "Em dia", porcentagem: response.emDia, fill: "#2662d9" },
+    { status: "Concluído", porcentagem: response.concluido, fill: "#2eb88a" },
+    { status: "Faturado", porcentagem: response.faturado, fill: "#af57db" },
+    { status: "Em atraso", porcentagem: response.emAtraso, fill: "#e23670" },
   ];
 
   // Calcular o total de projetos
@@ -71,14 +71,14 @@ export const PieChartStatusGeral = ({ fases }: PieChartStatusGeralProps) => {
       <ChartContainer config={chartConfig} className="w-full min-h-[300px]">
         <PieChart>
           <ChartTooltip cursor={true} content={<ChartTooltipContent />} />
-          <Pie
+            <Pie
             data={chartData}
             dataKey="porcentagem"
             nameKey="status"
             innerRadius={60}
-            label={(entry) => entry.status} // Exibir o status como rótulo
+            label={(entry) => (entry.porcentagem > 0 ? entry.status : "")} // Exibir o status como rótulo apenas se o valor for maior que 0
             labelLine={false}
-          >
+            >
             {dataWithPercentage.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={entry.fill} /> // Aplicar cores personalizadas
             ))}

@@ -65,7 +65,7 @@ export const BarMetaAno = ({ title, data }: BarMetaAnoProps) => {
             name="Previsto Mês(%)"
           />
           {/* Barras para o realizado */}
-          <Bar yAxisId="left" dataKey="realizado" barSize={20} fill="#FFFF"  name="Realizado (%)" />
+          <Bar yAxisId="left" dataKey="realizado" barSize={20} fill="currentColor"  name="Realizado (%)" className=" text-slate-900 dark:text-white-400 "/>
           {/* Linha para a % Concluída */}
           <Line yAxisId="right" type="monotone" dataKey={() => mediaPrevista} stroke="#087829" name="Media Prevista Ano(%)" />
         </ComposedChart>
