@@ -92,7 +92,7 @@ export default function DashBoardEngenharia() {
 
   return (
     <main className="sm:ml-14 p-4">
-      <section className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-2 scroll-smooth overflow-hidden-y">
+      <section className="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-5 gap-2 scroll-smooth overflow-hidden-y">
 
         <KpiCardEng
           title="Projetos"

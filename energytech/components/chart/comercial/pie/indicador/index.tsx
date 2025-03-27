@@ -35,19 +35,19 @@ export const Pie180IndicadorMetaConluida = ({ data }: Pie180Props) => {
           Indice de metas Ano
         </CardDescription>
       </CardHeader>
-      <ChartContainer config={chartConfig} className="lg:h-full ">
+      <ChartContainer config={chartConfig} className="lg:h-full  sm:*h-[200px] h-[150px] justify-center items-center flex-col">
         <RadialBarChart
           data={chartData}
           endAngle={180}
-          innerRadius={90}
-          outerRadius={50}
-          className="w-full h-full"
+          innerRadius={80}
+          outerRadius={60}
+          className="w-full h-full items-center justify-self-center lg:mt-2 sm:mt-6 "
         >
           <ChartTooltip
             cursor={false}
             content={<ChartTooltipContent hideLabel />}
           />
-          <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
+          <PolarRadiusAxis tick={false} tickLine={true} axisLine={false} className="justify-self-center items-center " >
             <Label
               content={({ viewBox }) => {
                 if (viewBox && "cx" in viewBox && "cy" in viewBox) {

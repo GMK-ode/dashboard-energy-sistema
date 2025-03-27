@@ -27,7 +27,7 @@ export const KpiCardEng = ({ title, description, value }: KpiCardEngProps) => {
     }
   }
   return (
-    <Card className=" shadow-2xs  border-4 dark:border-1">
+    <Card className=" shadow-2xs  border-4 dark:border-1 md:max-h-[200px]">
       <CardHeader>
         <div className="flex items-center justify-center ">
           <CardTitle className="text-lg sm:text-xl text-orange-400 select-none">
